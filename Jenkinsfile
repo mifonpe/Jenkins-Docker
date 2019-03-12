@@ -31,6 +31,13 @@ pipeline {
                 //bat "docker build . -t tomcatwebapp:${$env.BUILD_ID}"
 
             }
+            
+            
+            post{
+                success{
+                    sh "sudo docker run -p 8083:8083 tomcatwebapp:${env.BUILD_ID}"
+                }
+            }
         }
 
     }
